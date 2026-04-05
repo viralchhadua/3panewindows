@@ -81,20 +81,14 @@ section{padding:7rem 4%;}
 .g-item:nth-child(1){grid-column:span 5;grid-row:span 2;}
 .g-item:nth-child(2){grid-column:span 4;}
 .g-item:nth-child(3){grid-column:span 3;}
-.g-item:nth-child(4){grid-column:span 3;}
-.g-item:nth-child(5){grid-column:span 4;}
-.g-bg{width:100%;height:100%;transition:transform 0.6s ease;display:flex;align-items:center;justify-content:center;position:relative;}
+.g-item:nth-child(4){grid-column:span 7;}
+.g-bg{width:100%;height:100%;transition:transform 0.6s ease;display:flex;align-items:center;justify-content:center;position:relative;background:#141414;}
+.g-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
 .g-item:hover .g-bg{transform:scale(1.05);}
-.g-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);opacity:0;transition:opacity 0.4s;}
+.g-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);opacity:0;transition:opacity 0.4s;z-index:1;}
 .g-item:hover .g-bg::after{opacity:1;}
-.g-1{background:linear-gradient(135deg,#1a2030,#0d1520);border:1px solid rgba(201,168,76,0.1);}
-.g-2{background:linear-gradient(135deg,#1e1a10,#2a2010);border:1px solid rgba(201,168,76,0.1);}
-.g-3{background:linear-gradient(135deg,#101820,#0a1020);border:1px solid rgba(201,168,76,0.1);}
-.g-4{background:linear-gradient(135deg,#1a1510,#251e14);border:1px solid rgba(201,168,76,0.1);}
-.g-5{background:linear-gradient(135deg,#0f1a15,#182515);border:1px solid rgba(201,168,76,0.1);}
 .g-label{position:absolute;bottom:1rem;left:1rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0;transition:opacity 0.4s;z-index:2;}
 .g-item:hover .g-label{opacity:1;}
-.window-svg{opacity:0.3;}
 
 #about{background:var(--charcoal2);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
@@ -272,13 +266,11 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
     <div class="gold-divider"></div>
   </div>
   <div class="gallery-grid reveal">
-    <div class="g-item"><div class="g-bg g-1"><svg class="window-svg" width="120" height="180" viewBox="0 0 120 180" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="10" y="10" width="100" height="160"/><line x1="60" y1="10" x2="60" y2="170"/><line x1="10" y1="90" x2="110" y2="90"/><path d="M10 10 Q60 40 110 10"/></svg></div><div class="g-label">Arch Window — Residential</div></div>
-    <div class="g-item"><div class="g-bg g-2"><svg class="window-svg" width="140" height="100" viewBox="0 0 140 100" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="124" height="84"/><line x1="54" y1="8" x2="54" y2="92"/><line x1="86" y1="8" x2="86" y2="92"/><line x1="8" y1="50" x2="132" y2="50"/></svg></div><div class="g-label">Bay Window — Residential</div></div>
-    <div class="g-item"><div class="g-bg g-3"><svg class="window-svg" width="80" height="100" viewBox="0 0 80 100" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="64" height="84"/><line x1="40" y1="8" x2="40" y2="92"/><line x1="8" y1="50" x2="72" y2="50"/></svg></div><div class="g-label">Double Hung — Custom</div></div>
-    <div class="g-item"><div class="g-bg g-4"><svg class="window-svg" width="120" height="90" viewBox="0 0 120 90" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="104" height="74"/><line x1="38" y1="8" x2="38" y2="82"/><line x1="82" y1="8" x2="82" y2="82"/><line x1="8" y1="45" x2="112" y2="45"/></svg></div><div class="g-label">Commercial Storefront</div></div>
-    <div class="g-item"><div class="g-bg g-5"><svg class="window-svg" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#c9a84c" stroke-width="1"><polygon points="50,8 92,92 8,92"/><line x1="50" y1="8" x2="50" y2="92"/><line x1="8" y1="65" x2="92" y2="65"/></svg></div><div class="g-label">Architectural Custom</div></div>
+    <div class="g-item"><div class="g-bg"><img src="images/casement_window_outward_open.jpeg" alt="Casement window open outward showing premium residential window installation by 3Pane Windows in Northeast Georgia"/></div><div class="g-label">Casement Window — Open</div></div>
+    <div class="g-item"><div class="g-bg"><img src="images/casement-window-one-open.jpeg" alt="Single casement window partially open — energy-efficient residential window installation"/></div><div class="g-label">Casement Window — Residential</div></div>
+    <div class="g-item"><div class="g-bg"><img src="images/casement-window-closed.jpeg" alt="Closed casement window showcasing clean modern window design for homes and businesses"/></div><div class="g-label">Casement Window — Closed</div></div>
+    <div class="g-item"><div class="g-bg"><img src="images/IMG_1472.jpeg" alt="Custom window installation project by 3Pane Windows — serving Northeast Georgia and nationwide"/></div><div class="g-label">Custom Installation</div></div>
   </div>
-  <p style="text-align:center;margin-top:2rem;font-size:0.7rem;letter-spacing:0.15em;color:var(--cream-dim);font-style:italic;">Photo gallery coming soon — representative window designs shown above</p>
 </section>
 
 <!-- ABOUT -->
@@ -341,7 +333,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
       <div class="gold-divider"></div>
       <p class="contact-body">Whether you're planning a new build, a renovation, or a nationwide commercial project — we'd love to hear about it. Fill out the form and a specialist will be in touch within 24 hours.</p>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M9 2 C5.1 2 2 5.1 2 9 C2 12.9 5.1 16 9 16 C12.9 16 16 12.9 16 9 C16 5.1 12.9 2 9 2Z"/><polyline points="9,5 9,9 12,11"/></svg></div><div class="cd-text"><strong>Response Time</strong>Within 24 hours, Monday–Saturday</div></div>
-      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 h12 v10 h-12 z"/><polyline points="3,3 9,10 15,3"/></svg></div><div class="cd-text"><strong>Email</strong>info@3panewindows.com</div></div>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 h12 v10 h-12 z"/><polyline points="3,3 9,10 15,3"/></svg></div><div class="cd-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84f7b4a5aaa1b3adaaa0abb3b7eaa7aba9">[email&#160;protected]</a></div></div>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 Q3 7 7 8 L8 6 Q10 7 10 9 Q11 13 15 13 L15 15 Q9 16 7 10 Q4 9 3 3Z"/></svg></div><div class="cd-text"><strong>Phone</strong>678-622-3112</div></div>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><circle cx="9" cy="7" r="3"/><path d="M3 16 Q3 11 9 11 Q15 11 15 16"/></svg></div><div class="cd-text"><strong>Service Area</strong>Northeast Georgia &amp; All 50 States</div></div>
     </div>
@@ -407,7 +399,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
   <button class="nationwide-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Free Quote</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
 });
@@ -447,12 +439,4 @@ function toggleMenu(){
     links.style.display='none';cta.style.display='none';
   } else {
     links.style.display='flex';links.style.flexDirection='column';
-    links.style.position='absolute';links.style.top='72px';
-    links.style.left='0';links.style.right='0';
-    links.style.background='rgba(8,8,8,0.98)';links.style.padding='2rem';
-    links.style.gap='1.5rem';cta.style.display='block';
-  }
-}
-</script>
-</body>
-</html>
+    links.style.position='absolute';li
