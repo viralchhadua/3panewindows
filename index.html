@@ -75,8 +75,8 @@ section{padding:7rem 4%;}
 
 #gallery{background:var(--black);}
 .gallery-header{margin-bottom:3rem;}
-.gallery-track-wrap{overflow:hidden;width:100%;}
-.gallery-track{display:flex;flex-wrap:nowrap;gap:1.5rem;transition:transform 0.5s ease;will-change:transform;}
+.gallery-track{display:flex;flex-wrap:nowrap;gap:1.5rem;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px;}
+.gallery-track::-webkit-scrollbar{display:none;}
 .g-item{flex:0 0 420px;height:320px;overflow:hidden;position:relative;border:1px solid rgba(201,168,76,0.1);}
 .g-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 0.5s ease;}
 .g-item:hover img{transform:scale(1.04);}
@@ -261,18 +261,16 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
     <h2 class="section-title">A Portfolio of<br><em>Excellence</em></h2>
     <div class="gold-divider"></div>
   </div>
-  <div class="gallery-track-wrap">
-    <div class="gallery-track" id="galleryTrack">
-      <div class="g-item"><img src="images/casement-window-outside-open.jpeg" alt="Casement windows open from outside — premium residential window installation by 3Pane Windows in Northeast Georgia"/><div class="g-label">Exterior View — Open</div></div>
-      <div class="g-item"><img src="images/casement-window-inside-open.jpeg" alt="Casement window open interior view — energy-efficient window installation for homes"/><div class="g-label">Interior View — Open</div></div>
-      <div class="g-item"><img src="images/casement-window-inside-closed.jpeg" alt="Casement window closed interior view — custom residential window by 3Pane Windows"/><div class="g-label">Interior View — Closed</div></div>
-      <div class="g-item"><img src="images/casement-window-outside-closed.jpeg" alt="Casement window closed exterior view — quality window installation for homes and businesses"/><div class="g-label">Exterior View — Closed</div></div>
-      <div class="g-item"><img src="images/casement-window-outside-one-open.jpeg" alt="Single casement window open from exterior — custom window solutions serving Northeast Georgia and nationwide"/><div class="g-label">Exterior — One Open</div></div>
-    </div>
+  <div class="gallery-track" id="galleryTrack">
+    <div class="g-item"><img src="images/casement-window-outside-open.jpeg" alt="Casement windows open from outside — premium residential window installation by 3Pane Windows in Northeast Georgia"/><div class="g-label">Exterior View — Open</div></div>
+    <div class="g-item"><img src="images/casement-window-inside-open.jpeg" alt="Casement window open interior view — energy-efficient window installation for homes"/><div class="g-label">Interior View — Open</div></div>
+    <div class="g-item"><img src="images/casement-window-inside-closed.jpeg" alt="Casement window closed interior view — custom residential window by 3Pane Windows"/><div class="g-label">Interior View — Closed</div></div>
+    <div class="g-item"><img src="images/casement-window-outside-closed.jpeg" alt="Casement window closed exterior view — quality window installation for homes and businesses"/><div class="g-label">Exterior View — Closed</div></div>
+    <div class="g-item"><img src="images/casement-window-outside-one-open.jpeg" alt="Single casement window open from exterior — custom window solutions serving Northeast Georgia and nationwide"/><div class="g-label">Exterior — One Open</div></div>
   </div>
   <div class="gallery-nav">
-    <button class="g-nav-btn" onclick="slideGallery(-1)">&#8592;</button>
-    <button class="g-nav-btn" onclick="slideGallery(1)">&#8594;</button>
+    <button class="g-nav-btn" onclick="document.getElementById('galleryTrack').scrollLeft-=444">&#8592;</button>
+    <button class="g-nav-btn" onclick="document.getElementById('galleryTrack').scrollLeft+=444">&#8594;</button>
   </div>
 </section>
 
@@ -428,15 +426,6 @@ function slideTestimonials(dir){
   tPos=Math.max(maxPos,Math.min(0,tPos-(dir*cardW)));
   track.style.transform='translateX('+tPos+'px)';
   track.style.transition='transform 0.5s ease';
-}
-let gPos=0;
-function slideGallery(dir){
-  const track=document.getElementById('galleryTrack');
-  const items=track.querySelectorAll('.g-item');
-  const itemW=items[0].offsetWidth+24;
-  const maxPos=-(items.length-1)*itemW;
-  gPos=Math.max(maxPos,Math.min(0,gPos-(dir*itemW)));
-  track.style.transform='translateX('+gPos+'px)';
 }
 function handleSubmit(e){
   e.preventDefault();
