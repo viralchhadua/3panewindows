@@ -333,7 +333,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
       <div class="gold-divider"></div>
       <p class="contact-body">Whether you're planning a new build, a renovation, or a nationwide commercial project — we'd love to hear about it. Fill out the form and a specialist will be in touch within 24 hours.</p>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M9 2 C5.1 2 2 5.1 2 9 C2 12.9 5.1 16 9 16 C12.9 16 16 12.9 16 9 C16 5.1 12.9 2 9 2Z"/><polyline points="9,5 9,9 12,11"/></svg></div><div class="cd-text"><strong>Response Time</strong>Within 24 hours, Monday–Saturday</div></div>
-      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 h12 v10 h-12 z"/><polyline points="3,3 9,10 15,3"/></svg></div><div class="cd-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84f7b4a5aaa1b3adaaa0abb3b7eaa7aba9">[email&#160;protected]</a></div></div>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 h12 v10 h-12 z"/><polyline points="3,3 9,10 15,3"/></svg></div><div class="cd-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="533a3d353c136023323d36243a3d373c24207d303c3e">[email&#160;protected]</a></div></div>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 Q3 7 7 8 L8 6 Q10 7 10 9 Q11 13 15 13 L15 15 Q9 16 7 10 Q4 9 3 3Z"/></svg></div><div class="cd-text"><strong>Phone</strong>678-622-3112</div></div>
       <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><circle cx="9" cy="7" r="3"/><path d="M3 16 Q3 11 9 11 Q15 11 15 16"/></svg></div><div class="cd-text"><strong>Service Area</strong>Northeast Georgia &amp; All 50 States</div></div>
     </div>
@@ -404,10 +404,18 @@ window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
 });
 const reveals=document.querySelectorAll('.reveal');
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
-},{threshold:0.1});
-reveals.forEach(r=>observer.observe(r));
+// Fallback: if IntersectionObserver isn't available or elements don't trigger, show them anyway
+function revealAll(){reveals.forEach(r=>r.classList.add('visible'));}
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+  reveals.forEach(r=>observer.observe(r));
+  // Safety net: reveal everything after 2 seconds regardless
+  setTimeout(revealAll, 2000);
+} else {
+  revealAll();
+}
 let tPos=0;
 function slideTestimonials(dir){
   const track=document.getElementById('tTrack');
