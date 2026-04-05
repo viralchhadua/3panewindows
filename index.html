@@ -75,9 +75,9 @@ section{padding:7rem 4%;}
 
 #gallery{background:var(--black);}
 .gallery-header{margin-bottom:3rem;}
-.gallery-track-wrap{overflow:hidden;}
-.gallery-track{display:flex;gap:1.5rem;transition:transform 0.5s ease;}
-.g-item{flex-shrink:0;width:420px;height:320px;overflow:hidden;position:relative;border:1px solid rgba(201,168,76,0.1);}
+.gallery-track-wrap{overflow:hidden;width:100%;}
+.gallery-track{display:flex;flex-wrap:nowrap;gap:1.5rem;transition:transform 0.5s ease;will-change:transform;}
+.g-item{flex:0 0 420px;height:320px;overflow:hidden;position:relative;border:1px solid rgba(201,168,76,0.1);}
 .g-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 0.5s ease;}
 .g-item:hover img{transform:scale(1.04);}
 .g-label{position:absolute;bottom:1rem;left:1rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:rgba(8,8,8,0.7);padding:0.3rem 0.7rem;opacity:0;transition:opacity 0.3s;}
@@ -85,7 +85,7 @@ section{padding:7rem 4%;}
 .gallery-nav{display:flex;justify-content:center;gap:1rem;margin-top:2rem;}
 .g-nav-btn{width:40px;height:40px;border:1px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);cursor:pointer;font-size:1rem;transition:all 0.3s;display:flex;align-items:center;justify-content:center;}
 .g-nav-btn:hover{background:var(--gold);color:var(--black);}
-@media(max-width:768px){.g-item{width:300px;height:240px;}}
+@media(max-width:768px){.g-item{flex:0 0 300px;height:240px;}}
 
 #about{background:var(--charcoal2);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
@@ -263,10 +263,10 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
   </div>
   <div class="gallery-track-wrap">
     <div class="gallery-track" id="galleryTrack">
-      <div class="g-item"><img src="images/casement-window-outside-open.jpeg" alt="Casement windows open from outside view — premium residential window installation by 3Pane Windows in Northeast Georgia"/><div class="g-label">Exterior View — Open</div></div>
+      <div class="g-item"><img src="images/casement-window-outside-open.jpeg" alt="Casement windows open from outside — premium residential window installation by 3Pane Windows in Northeast Georgia"/><div class="g-label">Exterior View — Open</div></div>
       <div class="g-item"><img src="images/casement-window-inside-open.jpeg" alt="Casement window open interior view — energy-efficient window installation for homes"/><div class="g-label">Interior View — Open</div></div>
       <div class="g-item"><img src="images/casement-window-inside-closed.jpeg" alt="Casement window closed interior view — custom residential window by 3Pane Windows"/><div class="g-label">Interior View — Closed</div></div>
-      <div class="g-item"><img src="images/casement-window-outside-closed.jpeg" alt="Casement window closed exterior view — high quality window installation for homes and businesses"/><div class="g-label">Exterior View — Closed</div></div>
+      <div class="g-item"><img src="images/casement-window-outside-closed.jpeg" alt="Casement window closed exterior view — quality window installation for homes and businesses"/><div class="g-label">Exterior View — Closed</div></div>
       <div class="g-item"><img src="images/casement-window-outside-one-open.jpeg" alt="Single casement window open from exterior — custom window solutions serving Northeast Georgia and nationwide"/><div class="g-label">Exterior — One Open</div></div>
     </div>
   </div>
@@ -437,7 +437,6 @@ function slideGallery(dir){
   const maxPos=-(items.length-1)*itemW;
   gPos=Math.max(maxPos,Math.min(0,gPos-(dir*itemW)));
   track.style.transform='translateX('+gPos+'px)';
-  track.style.transition='transform 0.5s ease';
 }
 function handleSubmit(e){
   e.preventDefault();
