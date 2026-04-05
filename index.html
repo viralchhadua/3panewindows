@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>3Pane Windows | Residential & Commercial Window Solutions</title>
+<meta name="description" content="Premium residential and commercial window installation across Northeast Georgia and nationwide. Custom measurements, expert craftsmanship, unmatched quality."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#080808;--charcoal:#141414;--charcoal2:#1e1e1e;--charcoal3:#2a2a2a;
+  --gold:#c9a84c;--gold-light:#e2c97e;--gold-dark:#9a7a2e;
+  --cream:#f0e8d8;--cream-dim:#b8a898;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--cream);font-family:'Josefin Sans',sans-serif;overflow-x:hidden;padding-bottom:52px;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--gold-dark);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;height:72px;transition:all 0.4s ease;}
+nav.scrolled{background:rgba(8,8,8,0.96);border-bottom:1px solid rgba(201,168,76,0.2);backdrop-filter:blur(10px);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:0.15em;color:var(--cream);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:0.5rem 1.4rem;font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.nav-cta:hover{background:var(--gold);color:var(--black);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:1px;background:var(--gold);}
+
+#home{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#080808 0%,#141414 40%,#1a1208 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-accent{position:absolute;right:-5%;top:10%;width:55%;height:85%;border:1px solid rgba(201,168,76,0.12);transform:rotate(3deg);}
+.hero-accent2{position:absolute;right:-2%;top:13%;width:50%;height:78%;border:1px solid rgba(201,168,76,0.07);transform:rotate(6deg);}
+.hero-window{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:42%;height:70%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;opacity:0.15;}
+.hero-window-pane{border:1px solid var(--gold);background:linear-gradient(135deg,rgba(201,168,76,0.05),rgba(201,168,76,0.02));}
+.hero-content{position:relative;z-index:2;padding:0 4%;max-width:600px;margin-left:4%;}
+.hero-eyebrow{font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-title strong{display:block;font-weight:600;}
+.hero-desc{font-size:0.8rem;letter-spacing:0.08em;line-height:1.9;color:var(--cream-dim);max-width:420px;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.8s ease 0.7s forwards;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s ease 0.9s forwards;}
+.btn-primary{background:var(--gold);color:var(--black);padding:0.9rem 2.2rem;font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.3s;font-weight:600;}
+.btn-primary:hover{background:var(--gold-light);}
+.btn-secondary{background:transparent;color:var(--cream);padding:0.9rem 2.2rem;font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(240,232,216,0.3);cursor:pointer;transition:all 0.3s;}
+.btn-secondary:hover{border-color:var(--cream);}
+.hero-stats{position:absolute;bottom:4rem;left:4%;display:flex;gap:3rem;opacity:0;animation:fadeUp 0.8s ease 1.1s forwards;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold);}
+.stat-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-dim);margin-top:0.2rem;}
+.scroll-indicator{position:absolute;bottom:2rem;right:4%;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeUp 0.8s ease 1.3s forwards;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+.scroll-text{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cream-dim);writing-mode:vertical-rl;}
+
+section{padding:7rem 4%;}
+.section-label{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--gold);}
+.gold-divider{width:60px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:2rem;}
+
+#services{background:var(--charcoal);}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem;}
+.services-intro{max-width:380px;font-size:0.8rem;letter-spacing:0.05em;line-height:1.9;color:var(--cream-dim);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(201,168,76,0.1);}
+.service-card{background:var(--charcoal);padding:2.5rem;transition:all 0.4s;cursor:default;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+.service-card:hover{background:var(--charcoal2);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{width:40px;height:40px;margin-bottom:1.5rem;}
+.service-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1;}
+.service-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:0.8rem;color:var(--cream);}
+.service-desc{font-size:0.75rem;letter-spacing:0.05em;line-height:1.9;color:var(--cream-dim);}
+.service-tag{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:0.3rem 0.8rem;}
+
+#gallery{background:var(--black);}
+.gallery-header{margin-bottom:3rem;}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(2,220px);gap:6px;}
+.g-item{overflow:hidden;position:relative;}
+.g-item:nth-child(1){grid-column:span 5;grid-row:span 2;}
+.g-item:nth-child(2){grid-column:span 4;}
+.g-item:nth-child(3){grid-column:span 3;}
+.g-item:nth-child(4){grid-column:span 3;}
+.g-item:nth-child(5){grid-column:span 4;}
+.g-bg{width:100%;height:100%;transition:transform 0.6s ease;display:flex;align-items:center;justify-content:center;position:relative;}
+.g-item:hover .g-bg{transform:scale(1.05);}
+.g-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);opacity:0;transition:opacity 0.4s;}
+.g-item:hover .g-bg::after{opacity:1;}
+.g-1{background:linear-gradient(135deg,#1a2030,#0d1520);border:1px solid rgba(201,168,76,0.1);}
+.g-2{background:linear-gradient(135deg,#1e1a10,#2a2010);border:1px solid rgba(201,168,76,0.1);}
+.g-3{background:linear-gradient(135deg,#101820,#0a1020);border:1px solid rgba(201,168,76,0.1);}
+.g-4{background:linear-gradient(135deg,#1a1510,#251e14);border:1px solid rgba(201,168,76,0.1);}
+.g-5{background:linear-gradient(135deg,#0f1a15,#182515);border:1px solid rgba(201,168,76,0.1);}
+.g-label{position:absolute;bottom:1rem;left:1rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0;transition:opacity 0.4s;z-index:2;}
+.g-item:hover .g-label{opacity:1;}
+.window-svg{opacity:0.3;}
+
+#about{background:var(--charcoal2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.about-visual{position:relative;height:500px;}
+.about-frame{position:absolute;inset:0;border:1px solid rgba(201,168,76,0.2);}
+.about-frame-inner{position:absolute;inset:16px;border:1px solid rgba(201,168,76,0.1);background:linear-gradient(135deg,var(--charcoal3),var(--charcoal));}
+.about-window-art{position:absolute;inset:32px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:4px;}
+.aw-pane{border:1px solid rgba(201,168,76,0.15);background:linear-gradient(135deg,rgba(201,168,76,0.03),transparent);}
+.about-badge{position:absolute;bottom:-20px;right:-20px;width:120px;height:120px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--black);line-height:1;}
+.about-badge-text{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);}
+.about-body{font-size:0.8rem;letter-spacing:0.05em;line-height:1.9;color:var(--cream-dim);margin-bottom:1.5rem;}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+.about-feature{display:flex;align-items:flex-start;gap:0.8rem;}
+.af-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+.af-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.af-text{font-size:0.72rem;letter-spacing:0.05em;line-height:1.7;color:var(--cream-dim);}
+
+#testimonials{background:var(--black);overflow:hidden;}
+.testimonials-header{text-align:center;margin-bottom:4rem;}
+.testimonials-header .gold-divider{margin:0 auto 2rem;}
+.testimonials-track{display:flex;gap:2rem;}
+.testimonial-card{background:var(--charcoal);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;min-width:380px;flex-shrink:0;position:relative;}
+.testimonial-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:0.3;position:absolute;top:1rem;left:1.5rem;line-height:1;}
+.t-stars{display:flex;gap:3px;margin-bottom:1.5rem;}
+.t-star{width:12px;height:12px;fill:var(--gold);}
+.t-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;font-weight:300;line-height:1.7;color:var(--cream);margin-bottom:1.5rem;}
+.t-author{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.t-location{font-size:0.62rem;letter-spacing:0.1em;color:var(--cream-dim);margin-top:0.2rem;}
+.testimonials-nav{display:flex;justify-content:center;gap:1rem;margin-top:3rem;}
+.t-nav-btn{width:40px;height:40px;border:1px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);cursor:pointer;font-size:1rem;transition:all 0.3s;display:flex;align-items:center;justify-content:center;}
+.t-nav-btn:hover{background:var(--gold);color:var(--black);}
+
+#contact{background:var(--charcoal);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+.contact-body{font-size:0.8rem;letter-spacing:0.05em;line-height:1.9;color:var(--cream-dim);margin-bottom:2.5rem;}
+.contact-detail{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem;}
+.cd-icon{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+.cd-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.cd-text{font-size:0.75rem;letter-spacing:0.08em;color:var(--cream-dim);line-height:1.7;}
+.cd-text strong{display:block;color:var(--cream);font-weight:400;margin-bottom:0.2rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;}
+.contact-form{background:var(--charcoal2);padding:2.5rem;border:1px solid rgba(201,168,76,0.1);}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:0.5rem;}
+.form-sub{font-size:0.72rem;letter-spacing:0.08em;color:var(--cream-dim);margin-bottom:2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--charcoal3);border:1px solid rgba(201,168,76,0.15);color:var(--cream);padding:0.8rem 1rem;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;letter-spacing:0.05em;outline:none;transition:border-color 0.3s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group select option{background:var(--charcoal3);}
+.form-group textarea{height:100px;resize:vertical;}
+.form-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:1rem;font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:0.5rem;}
+.form-submit:hover{background:var(--gold-light);}
+.form-success{display:none;text-align:center;padding:2rem;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);}
+
+footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding:3rem 4%;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.15em;}
+.footer-logo span{color:var(--gold);}
+.footer-links{display:flex;gap:2rem;list-style:none;}
+.footer-links a{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:0.6rem;letter-spacing:0.1em;color:var(--cream-dim);opacity:0.6;}
+
+.nationwide-bar{position:fixed;bottom:0;left:0;right:0;z-index:999;background:linear-gradient(135deg,var(--gold-dark),var(--gold));padding:0 4%;height:52px;display:flex;align-items:center;justify-content:center;gap:2rem;box-shadow:0 -2px 20px rgba(0,0,0,0.4);}
+.nationwide-text{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);font-weight:600;white-space:nowrap;}
+.nationwide-cta{background:var(--black);color:var(--gold);padding:0.4rem 1.3rem;font-family:'Josefin Sans',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;font-weight:600;transition:all 0.3s;white-space:nowrap;flex-shrink:0;}
+.nationwide-cta:hover{background:var(--charcoal);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scrollPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
+  .hero-window,.hero-accent,.hero-accent2{display:none;}
+  .hero-content{margin:0;padding-top:5rem;}.hero-stats{gap:1.5rem;}
+  .services-header{flex-direction:column;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-item:nth-child(n){grid-column:span 1;grid-row:span 1;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .about-visual{height:300px;}.form-row{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{flex-wrap:wrap;justify-content:center;}
+  .nationwide-text{font-size:0.55rem;letter-spacing:0.08em;}
+}
+</style>
+</head>
+<body>
+
+<!--
+  =====================================================
+  NETLIFY FORM DETECTION — This hidden form MUST stay
+  here so Netlify can find it during its static scan.
+  Do not remove it.
+  =====================================================
+-->
+<form name="quote-request" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="first-name"/>
+  <input type="text" name="last-name"/>
+  <input type="email" name="email"/>
+  <input type="tel" name="phone"/>
+  <select name="project-type"><option>Residential Windows</option></select>
+  <input type="text" name="city"/>
+  <input type="text" name="state"/>
+  <textarea name="project-details"></textarea>
+</form>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">3PANE <span>WINDOWS</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a Quote</button>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-accent"></div><div class="hero-accent2"></div>
+  <div class="hero-window">
+    <div class="hero-window-pane"></div><div class="hero-window-pane"></div>
+    <div class="hero-window-pane"></div><div class="hero-window-pane"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Northeast Georgia &amp; Nationwide</div>
+    <h1 class="hero-title"><em>Exceptional</em><strong>Windows &amp;</strong><strong>Glass Solutions</strong></h1>
+    <p class="hero-desc">Premium residential and commercial window installations crafted to perfection. From custom architectural designs to nationwide builder programs — we deliver clarity, elegance, and lasting quality.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a Free Quote</button>
+      <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">500+</div><div class="stat-label">Projects Completed</div></div>
+    <div><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-num">50</div><div class="stat-label">States Served</div></div>
+  </div>
+  <div class="scroll-indicator"><span class="scroll-text">Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Premium Window<br><em>Solutions</em></h2>
+      <div class="gold-divider"></div>
+    </div>
+    <p class="services-intro">Whether you're a homeowner seeking elegance or a developer requiring precision at scale, our window solutions are engineered to exceed expectations — locally and nationwide.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><rect x="4" y="4" width="32" height="32"/><line x1="20" y1="4" x2="20" y2="36"/><line x1="4" y1="20" x2="36" y2="20"/></svg></div><div class="service-title">Residential Windows</div><p class="service-desc">Custom windows for homes of every architecture — from classic craftsman to contemporary modern. Energy-efficient, beautifully crafted, and built to last generations.</p><span class="service-tag">Homeowners</span></div>
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="28"/><line x1="4" y1="18" x2="36" y2="18"/><line x1="4" y1="28" x2="36" y2="28"/><line x1="16" y1="8" x2="16" y2="36"/><line x1="28" y1="8" x2="28" y2="36"/></svg></div><div class="service-title">Commercial Windows</div><p class="service-desc">Large-scale glazing solutions for office buildings, retail spaces, and multi-unit developments. Structural integrity meets striking aesthetics for lasting impressions.</p><span class="service-tag">Businesses &amp; Developers</span></div>
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><path d="M20 4 L36 36 L4 36 Z"/><line x1="20" y1="4" x2="20" y2="36"/></svg></div><div class="service-title">Custom Architectural</div><p class="service-desc">Bespoke shapes, arched tops, bay windows, and one-of-a-kind designs that become the defining feature of your property. No design is too complex.</p><span class="service-tag">Custom Design</span></div>
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14"/><path d="M20 6 A14 14 0 0 1 34 20"/><line x1="20" y1="6" x2="20" y2="34"/></svg></div><div class="service-title">Nationwide Builder Program</div><p class="service-desc">Send us your blueprints and measurements — we ship precision-manufactured windows directly to your build site anywhere in the USA. Fast lead times, guaranteed fit.</p><span class="service-tag">Builders Nationwide</span></div>
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28"/><path d="M6 20 Q20 10 34 20"/><path d="M6 20 Q20 30 34 20"/></svg></div><div class="service-title">Window Replacement</div><p class="service-desc">Upgrade aging or inefficient windows with minimal disruption. We assess, recommend, and install — ensuring improved energy performance and curb appeal.</p><span class="service-tag">Upgrades &amp; Retrofits</span></div>
+    <div class="service-card"><div class="service-icon"><svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24"/><path d="M8 8 L32 32 M8 32 L32 8"/><circle cx="20" cy="20" r="4"/></svg></div><div class="service-title">Energy-Efficient Glass</div><p class="service-desc">Triple-pane, low-E coatings, and gas-filled units that reduce energy bills and qualify for tax credits. Performance you can feel — and measure.</p><span class="service-tag">Energy Solutions</span></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-title">A Portfolio of<br><em>Excellence</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="g-item"><div class="g-bg g-1"><svg class="window-svg" width="120" height="180" viewBox="0 0 120 180" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="10" y="10" width="100" height="160"/><line x1="60" y1="10" x2="60" y2="170"/><line x1="10" y1="90" x2="110" y2="90"/><path d="M10 10 Q60 40 110 10"/></svg></div><div class="g-label">Arch Window — Residential</div></div>
+    <div class="g-item"><div class="g-bg g-2"><svg class="window-svg" width="140" height="100" viewBox="0 0 140 100" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="124" height="84"/><line x1="54" y1="8" x2="54" y2="92"/><line x1="86" y1="8" x2="86" y2="92"/><line x1="8" y1="50" x2="132" y2="50"/></svg></div><div class="g-label">Bay Window — Residential</div></div>
+    <div class="g-item"><div class="g-bg g-3"><svg class="window-svg" width="80" height="100" viewBox="0 0 80 100" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="64" height="84"/><line x1="40" y1="8" x2="40" y2="92"/><line x1="8" y1="50" x2="72" y2="50"/></svg></div><div class="g-label">Double Hung — Custom</div></div>
+    <div class="g-item"><div class="g-bg g-4"><svg class="window-svg" width="120" height="90" viewBox="0 0 120 90" fill="none" stroke="#c9a84c" stroke-width="1"><rect x="8" y="8" width="104" height="74"/><line x1="38" y1="8" x2="38" y2="82"/><line x1="82" y1="8" x2="82" y2="82"/><line x1="8" y1="45" x2="112" y2="45"/></svg></div><div class="g-label">Commercial Storefront</div></div>
+    <div class="g-item"><div class="g-bg g-5"><svg class="window-svg" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#c9a84c" stroke-width="1"><polygon points="50,8 92,92 8,92"/><line x1="50" y1="8" x2="50" y2="92"/><line x1="8" y1="65" x2="92" y2="65"/></svg></div><div class="g-label">Architectural Custom</div></div>
+  </div>
+  <p style="text-align:center;margin-top:2rem;font-size:0.7rem;letter-spacing:0.15em;color:var(--cream-dim);font-style:italic;">Photo gallery coming soon — representative window designs shown above</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-frame"></div><div class="about-frame-inner"></div>
+      <div class="about-window-art">
+        <div class="aw-pane"></div><div class="aw-pane"></div><div class="aw-pane"></div>
+        <div class="aw-pane"></div><div class="aw-pane"></div><div class="aw-pane"></div>
+        <div class="aw-pane"></div><div class="aw-pane"></div><div class="aw-pane"></div>
+      </div>
+      <div class="about-badge"><div class="about-badge-num">15+</div><div class="about-badge-text">Years of<br>Excellence</div></div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">Craftsmanship<br>Rooted in <em>Georgia</em></h2>
+      <div class="gold-divider"></div>
+      <p class="about-body">Founded in the heart of Northeast Georgia, 3Pane Windows began with a simple belief: that every home and building deserves windows that are both beautiful and built to last. What started as a local operation has grown into a trusted name across the nation.</p>
+      <p class="about-body">Our team combines old-world craftsmanship with modern precision manufacturing. Whether you're steps from our shop or across the country, your windows are made with the same uncompromising care.</p>
+      <div class="about-features">
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Locally owned &amp; operated in NE Georgia</span></div>
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Ships precision-fit windows nationwide</span></div>
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Licensed, insured &amp; certified installers</span></div>
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Industry-leading warranty on all products</span></div>
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Energy Star certified products available</span></div>
+        <div class="about-feature"><div class="af-icon"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></div><span class="af-text">Free measurements &amp; consultations</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <div class="section-label">Client Stories</div>
+    <h2 class="section-title">What Our Clients<br><em>Say</em></h2>
+    <div class="gold-divider"></div>
+  </div>
+  <div style="overflow:hidden;">
+    <div class="testimonials-track" id="tTrack">
+      <div class="testimonial-card"><div class="t-stars"><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg></div><p class="t-text">The craftsmanship on our new windows is simply outstanding. Every detail was perfect — from the custom arch shapes to the flawless installation. Our home has been transformed.</p><div class="t-author">Sarah &amp; James Mitchell</div><div class="t-location">Gainesville, GA — Residential</div></div>
+      <div class="testimonial-card"><div class="t-stars"><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg></div><p class="t-text">We ordered windows for our 40-unit development in Texas by simply sending measurements. Every single unit arrived perfectly sized, on time, and the quality exceeded our expectations.</p><div class="t-author">Marcus R. — Cornerstone Development</div><div class="t-location">Austin, TX — Commercial / Nationwide</div></div>
+      <div class="testimonial-card"><div class="t-stars"><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg></div><p class="t-text">Chose 3Pane for our new office build and couldn't be happier. The floor-to-ceiling commercial glazing makes our space feel open and sophisticated. Clients notice immediately.</p><div class="t-author">Diana Chen — Chen Architecture Group</div><div class="t-location">Atlanta, GA — Commercial</div></div>
+      <div class="testimonial-card"><div class="t-stars"><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg><svg class="t-star" viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg></div><p class="t-text">The energy bills dropped 30% after installing the triple-pane windows. The team was professional, clean, and finished ahead of schedule. Highly recommend to anyone in the state.</p><div class="t-author">Robert &amp; Linda Forsythe</div><div class="t-location">Cumming, GA — Residential Replacement</div></div>
+    </div>
+  </div>
+  <div class="testimonials-nav">
+    <button class="t-nav-btn" onclick="slideTestimonials(-1)">&#8592;</button>
+    <button class="t-nav-btn" onclick="slideTestimonials(1)">&#8594;</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Request a<br><em>Free Quote</em></h2>
+      <div class="gold-divider"></div>
+      <p class="contact-body">Whether you're planning a new build, a renovation, or a nationwide commercial project — we'd love to hear about it. Fill out the form and a specialist will be in touch within 24 hours.</p>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M9 2 C5.1 2 2 5.1 2 9 C2 12.9 5.1 16 9 16 C12.9 16 16 12.9 16 9 C16 5.1 12.9 2 9 2Z"/><polyline points="9,5 9,9 12,11"/></svg></div><div class="cd-text"><strong>Response Time</strong>Within 24 hours, Monday–Saturday</div></div>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 h12 v10 h-12 z"/><polyline points="3,3 9,10 15,3"/></svg></div><div class="cd-text"><strong>Email</strong>info@3panewindows.com</div></div>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><path d="M3 3 Q3 7 7 8 L8 6 Q10 7 10 9 Q11 13 15 13 L15 15 Q9 16 7 10 Q4 9 3 3Z"/></svg></div><div class="cd-text"><strong>Phone</strong>678-622-3112</div></div>
+      <div class="contact-detail"><div class="cd-icon"><svg viewBox="0 0 18 18"><circle cx="9" cy="7" r="3"/><path d="M3 16 Q3 11 9 11 Q15 11 15 16"/></svg></div><div class="cd-text"><strong>Service Area</strong>Northeast Georgia &amp; All 50 States</div></div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-title">Start Your Project</div>
+        <div class="form-sub">All fields marked are required to prepare your quote</div>
+        <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="quote-request"/>
+          <p style="display:none;"><label>Do not fill: <input name="bot-field"/></label></p>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" name="first-name" placeholder="John" required/></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" name="last-name" placeholder="Smith" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="john@email.com" required/></div>
+            <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="(000) 000-0000" required/></div>
+          </div>
+          <div class="form-group"><label>Project Type *</label>
+            <select name="project-type" required>
+              <option value="">Select a service...</option>
+              <option>Residential Windows</option>
+              <option>Commercial Windows</option>
+              <option>Custom Architectural</option>
+              <option>Nationwide Builder Program</option>
+              <option>Window Replacement</option>
+              <option>Energy Efficient Upgrade</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>City *</label><input type="text" name="city" placeholder="Gainesville" required/></div>
+            <div class="form-group"><label>State *</label><input type="text" name="state" placeholder="GA" required/></div>
+          </div>
+          <div class="form-group"><label>Project Details</label><textarea name="project-details" placeholder="Tell us about your project — number of windows, style preferences, timeline, etc."></textarea></div>
+          <button type="submit" class="form-submit">Submit Quote Request &#8594;</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div style="font-size:2rem;margin-bottom:1rem;">&#10022;</div>
+          Thank you for reaching out.<br>
+          <span style="font-size:0.9rem;color:var(--cream-dim);font-family:'Josefin Sans',sans-serif;letter-spacing:0.1em;">A specialist will contact you within 24 hours.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">3PANE <span>WINDOWS</span></div>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li><li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li><li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 3Pane Windows. All rights reserved. Northeast Georgia &amp; Nationwide.</div>
+  </div>
+</footer>
+
+<!-- FIXED BOTTOM NATIONWIDE BAR -->
+<div class="nationwide-bar">
+  <span class="nationwide-text">&#127482;&#127480; Now Serving Customers Nationwide — Custom Windows Made to Your Measurements</span>
+  <button class="nationwide-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Free Quote</button>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+reveals.forEach(r=>observer.observe(r));
+let tPos=0;
+function slideTestimonials(dir){
+  const track=document.getElementById('tTrack');
+  const cards=track.querySelectorAll('.testimonial-card');
+  const cardW=cards[0].offsetWidth+32;
+  const maxPos=-(cards.length-2)*cardW;
+  tPos=Math.max(maxPos,Math.min(0,tPos-(dir*cardW)));
+  track.style.transform='translateX('+tPos+'px)';
+  track.style.transition='transform 0.5s ease';
+}
+function handleSubmit(e){
+  e.preventDefault();
+  const form=document.getElementById('quoteForm');
+  fetch('/',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams(new FormData(form)).toString()
+  })
+  .then(()=>{
+    form.style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  })
+  .catch(()=>alert('There was a problem submitting the form. Please call us at 678-622-3112.'));
+}
+function toggleMenu(){
+  const links=document.querySelector('.nav-links');
+  const cta=document.querySelector('.nav-cta');
+  if(links.style.display==='flex'){
+    links.style.display='none';cta.style.display='none';
+  } else {
+    links.style.display='flex';links.style.flexDirection='column';
+    links.style.position='absolute';links.style.top='72px';
+    links.style.left='0';links.style.right='0';
+    links.style.background='rgba(8,8,8,0.98)';links.style.padding='2rem';
+    links.style.gap='1.5rem';cta.style.display='block';
+  }
+}
+</script>
+</body>
+</html>
